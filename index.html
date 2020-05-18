@@ -2,42 +2,37 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
     <title>Free Image Hosting</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="免费图床,图床Api,图片外链">
-    <meta name="description" content="免费公共图床, 提供图片上传和图片外链服务, 原图保存, 隐私相册, 全球CDN加速">
-    <link rel="shortcut icon" href="/static/image/favicon.png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="/asset/image/favicon.png" />
+    <link rel="bookmark" href="/asset/image/favicon.png" />
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ionicons@4.5.6/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="/asset/css/notifyme.css" rel="stylesheet">
+    <link href="/asset/css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="/static/common/spop/spop.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/animate.css" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/css/fileinput.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/fileinput.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/plugins/piexif.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/plugins/purify.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/themes/fas/theme.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container fih-nav-main">
-            <a class="navbar-brand active" href="/">Home</a>
-            <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                </ul>
-                <ul class="nav navbar-nav ml-auto">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto"></ul>
+                <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
                         <a class="nav-link" href="/about.html">About</a>
                     </li>
@@ -46,116 +41,85 @@
         </div>
     </nav>
 
-    <div class="container fih-main">
+    <div class="container kv-main">
         <div class="page-header">
-            <h1>Image Upload</h1>
-            <p><span id="maxImageSize">5 MB</span> max per file. <span id="maxFileCount">10</span> files max per
-                request.</p>
+            <h1>Image Upload</h1> 5 MB max per file. 10 files max per request.
         </div>
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="btn-group-toggle" data-toggle="buttons" id="publicStorage">
-                    <label class="btn btn-outline-secondary active">
-                        <input type="checkbox" autocomplete="off" name="apiType" value="this" title="本地">本站
-                    </label>
-                    <label class="btn btn-outline-secondary" style="display: none;">
-                        <input type="checkbox" autocomplete="off" name="apiType" value="SMMS" title="SMMS">SMMS
-                    </label>
-                    <label class="btn btn-outline-secondary" style="display: none;">
-                        <input type="checkbox" autocomplete="off" name="apiType" value="Catbox" title="Catbox">Catbox
-                    </label>
-                </div>
+        <form enctype="multipart/form-data">
+            <div class="form-group" style="max-height: 2000px;">
+                <input id="file" type="file" multiple class="file" data-overwrite-initial="false"
+                    data-min-file-count="1" name="file" accept="image/*">
             </div>
-        </div>
-
-        <div class="post">
-            <form enctype="multipart/form-data">
-                <div class="form-group">
-                    <input id="fih" type="file" name="image" multiple="true" class="file"
-                        data-overwrite-initial="false" data-min-file-count="1" accept="image/*">
-                </div>
-            </form>
-        </div>
-        <div id="showurl" style="display:none;">
-            <ul id="navTab" class="nav nav-tabs">
-                <li class="nav-item">
-                    <a aria-selected="true" data-toggle="tab" role="tab" class="nav-link active" href="#urlcode">URL</a>
-                </li>
-                <li class="nav-item"><a aria-selected="false" data-toggle="tab" role="tab" class="nav-link"
-                        href="#htmlcode">HTML</a></li>
-                <li class="nav-item"><a aria-selected="false" data-toggle="tab" role="tab" class="nav-link"
-                        href="#bbcode">BBCode</a>
-                </li>
-                <li class="nav-item"><a aria-selected="false" data-toggle="tab" role="tab" class="nav-link"
-                        href="#markdown">Markdown</a></li>
-                <li class="nav-item"><a aria-selected="false" data-toggle="tab" role="tab" class="nav-link"
-                        href="#markdownwithlink">Markdown with Link</a></li>
+        </form>
+        <form id="upload_option" enctype="multipart/form-data">
+        </form>
+        <div id="showurl" style="display: none;">
+            <ul id="navTab" class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" id="imagedetail-tab" href="#imagedetail-panel"
+                        data-toggle="tab">URL</a></li>
+                <li class="nav-item"><a class="nav-link" id="htmlcode-tab" href="#htmlcode-panel"
+                        data-toggle="tab">HTML</a></li>
+                <li class="nav-item"><a class="nav-link" id="bbcode-tab" href="#bbcode-panel"
+                        data-toggle="tab">BBCode</a></li>
+                <li class="nav-item"><a class="nav-link" id="markdown-tab" href="#markdown-panel"
+                        data-toggle="tab">Markdown</a></li>
             </ul>
-            <div id="navTabContent" class="tab-content">
-                <div id="urlcode" class="tab-pane active show">
-                    <div class="card card-default">
-                        <div class="card-body fih-imageucode">
-                            <table class="table table-bordered">
-                                <tbody id="urlcodes">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <div id="navTabContent" class="tab-content" style="border:none;">
+                <div class="tab-pane fade show active" id="imagedetail-panel" role="tabpanel" aria-labelledby="imagedetail-tab">
+                    <fieldset><table class="table table-bordered"><tbody id="imagedetail"></tbody></table></fieldset>
                 </div>
-                <div id="htmlcode" class="tab-pane">
-                    <div class="card card-default">
-                        <div class="card-body fih-imageucode">
-                            <table class="table table-bordered">
-                                <tbody id="htmlcodes">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="tab-pane fade" id="htmlcode-panel" role="tabpanel" aria-labelledby="htmlcode-tab">
+                    <fieldset><table class="table table-bordered"><tbody id="htmlcode"></tbody></table></fieldset>
                 </div>
-                <div id="bbcode" class="tab-pane">
-                    <div class="card card-default">
-                        <div class="card-body fih-imageucode">
-                            <table class="table table-bordered">
-                                <tbody id="bbcodes">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="tab-pane fade" id="bbcode-panel" role="tabpanel" aria-labelledby="bbcode-tab">
+                    <fieldset><table class="table table-bordered"><tbody id="bbcode"></tbody></table></fieldset>
                 </div>
-                <div id="markdown" class="tab-pane">
-                    <div class="card card-default">
-                        <div class="card-body fih-imageucode">
-                            <table class="table table-bordered">
-                                <tbody id="markdowncodes">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div id="markdownwithlink" class="tab-pane">
-                    <div class="card card-default">
-                        <div class="card-body fih-imageucode">
-                            <table class="table table-bordered">
-                                <tbody id="markdowncodes2">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="tab-pane fade" id="markdown-panel" role="tabpanel" aria-labelledby="markdown-tab">
+                    <fieldset><table class="table table-bordered"><tbody id="markdown"></tbody></table></fieldset>
                 </div>
             </div>
         </div>
+        <div class="page-footer"></div>
+
     </div>
 
     <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Copyright &#9400; 2020 All rights reserved.
-                请勿上传违反中国大陆和香港法律的图片，违者后果自负. </p>
+        <div class="container text-center">
+            <p class="text-muted">Copyright Ⓒ 2020 All rights reserved. 请勿上传违反中国大陆和香港法律的图片，违者后果自负. </p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net@1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net-bs@1.10.21/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-lazyload@1.9.7/jquery.lazyload.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/css/fileinput.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/fileinput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/plugins/piexif.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/plugins/sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/plugins/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/js/locales/zh.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.0.8/themes/fas/theme.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@1.0.10/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.1.2/dist/handlebars.min.js"></script>
+    <script id="image-template" type="text/x-handlebars-template">
+        <tr>
+            <td class="image-code-cover">
+                <img class="lazy" onload="DrawImage(this, 100, 100)" src="{{url}}">
+            </td>
+            <td>
+                <div class="dlinput_header">URL</div>
+                <div class="dlinput_container">
+                    <input class="form-control" type="text" onclick="this.select();" value="{{code}}">
+                </div>
+            </td>
+            <!-- <td style="width:260px;" class="advert"></td> -->
+        </tr>
+    </script>
+    <script src="/asset/js/upload.js"></script>
 </body>
-<script src="/static/common/spop/spop.min.js"></script>
-<script src="/static/js/function.js"></script>
-<script src="/static/js/upload.js"></script>
-<script src="/static/js/index.js"></script>
 
 </html>
