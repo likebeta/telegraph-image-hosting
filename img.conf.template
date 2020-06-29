@@ -1,0 +1,17 @@
+server {
+    listen ${NGINX_PORT};
+    client_max_body_size 5m;
+    root /var/www/img;
+    location /v1/upload {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+
+        if ($request_method = 'OPTIONS' ) {
+            return 204;
+        }
+
+        proxy_pass https://telegra.ph/upload;
+    }
+}
+
