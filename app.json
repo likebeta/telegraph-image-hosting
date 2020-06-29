@@ -1,0 +1,10 @@
+{
+    "name": "Free Image Host",
+    "description": "Image Host Powered By Heroku & Telegraph",
+    "keywords": ["Heroku", "Telegraph"],
+    "env": {
+    },
+    "website": "https://ixxoo.me",
+    "repository": "https://github.com/likebeta/telegraph-image-hosting",
+    "stack": "container"
+}
