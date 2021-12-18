@@ -2,7 +2,7 @@ const BASE_URL = window.location.origin;
 let $smfile = $("#file");
 $smfile.fileinput({
     theme: "fas",
-    uploadUrl: BASE_URL + '/v1/upload',
+    uploadUrl: BASE_URL + '/api/upload',
     uploadExtraData: function (previewId, index) {
         var dataArray = $("#upload_option").serializeArray(),
             len = dataArray.length,
