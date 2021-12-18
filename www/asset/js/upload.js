@@ -203,14 +203,8 @@ $smfile.on('fileclear', function (event) {
 });
 $smfile.on('filecleared', function (event) {
     if ($("#showurl").is(":visible")) {
-        layer.confirm('是否要清空历史上传', {
-            btn: ['Yes', 'No'] //按钮
-        }, function (index) {
-            uploaded_files = [];
-            render_uploaded();
-            layer.close(index);
-        }, function () {
-        });
+        uploaded_files = [];
+        render_uploaded();
     }
 });
 
