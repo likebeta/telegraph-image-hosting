@@ -1,5 +1,5 @@
 /**
- * GET /file
+ * GET /file/{filename}
  */
  export async function onRequestGet(context) {
     const {request} = context;
