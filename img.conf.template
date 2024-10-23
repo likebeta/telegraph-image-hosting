@@ -13,7 +13,7 @@ server {
             return 204;
         }
 
-        proxy_pass https://telegra.ph/upload;
+        proxy_pass https://telegra.ph/upload?source=bugtracker&$query_string;
     }
 
     location /file {

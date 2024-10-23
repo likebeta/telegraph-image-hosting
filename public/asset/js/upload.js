@@ -191,9 +191,9 @@ function render_uploaded() {
 }
 
 $smfile.on('fileuploaded', function (event, data, previewId, index) {
-    var form = data.form, files = data.files, extra = data.extra, response = data.response, reader = data.reader;
+    let response = data.response || {};
     if (response.error === undefined) {
-        response = { data: { url: BASE_URL + response[0].src } }
+        response = { data: { url: BASE_URL + response.src } }
         uploaded_files.push({ index: index, resp: response });
         render_uploaded();
     }
